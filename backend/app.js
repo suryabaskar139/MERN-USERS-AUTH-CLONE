@@ -5,12 +5,14 @@ const connectDb = require('./config/connectDb');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 const { error } = require('console');
 const userRouter = require('./routes/userRoute');
+const cookieParser = require('cookie-parser');
 
 dotenv.config({path : path.join(__dirname,'config','config.env')})
 connectDb();
 const app = express();
 
 app.use(express.json())
+app.use(cookieParser())
 
 
 app.get('/',(req,res) => {
